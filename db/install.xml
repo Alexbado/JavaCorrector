@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="mod/jcode/db" VERSION="20150411" COMMENT="XMLDB file for Moodle mod/jcode"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="jcode" COMMENT="Tabela de informações da instância">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Course jcode activity belongs to"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="name field for moodle instances"/>
+        <FIELD NAME="intro" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="General introduction of the jcode activity"/>
+        <FIELD NAME="introformat" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Format of the intro field (MOODLE, HTML, MARKDOWN...)"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timedue" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="até quando a atividade ficará disponível"/>
+        <FIELD NAME="timeavaliable" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="A partir de quando a atividade estará disponivel"/>
+        <FIELD NAME="grade" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="nota da atividade"/>
+        <FIELD NAME="resubmit" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Reenviar"/>
+        <FIELD NAME="correctanswer" TYPE="char" LENGTH="128" NOTNULL="false" SEQUENCE="false" COMMENT="correctanswer"/>
+        <FIELD NAME="parameters" TYPE="char" LENGTH="256" NOTNULL="false" SEQUENCE="false" COMMENT="parameters"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="course" UNIQUE="false" FIELDS="course"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="jcode_files" COMMENT="jcode files">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="jcode_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="jcode_id"/>
+        <FIELD NAME="user_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="user_id"/>
+        <FIELD NAME="filename" TYPE="char" LENGTH="128" NOTNULL="false" SEQUENCE="false" COMMENT="filename"/>
+        <FIELD NAME="result" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="result"/>
+        <FIELD NAME="grade" TYPE="int" LENGTH="3" NOTNULL="true" SEQUENCE="false" COMMENT="grade"/>
+        <FIELD NAME="submit_date" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="submit_date"/>
+        <FIELD NAME="feedback" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="feedback"/>
+        <FIELD NAME="locked" TYPE="int" LENGTH="1" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="locked"/>
+        <FIELD NAME="feedback_date" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="feedback_date"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>
